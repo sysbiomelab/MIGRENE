@@ -9,13 +9,15 @@ using Bacterial gene catalog, metagenome species (MSP) and metagenomic data inte
 note: if you have your GEMS and you need to create the personalized metabolic microbiome data
 i.e. reaction richness, Microbiome, reaction abundance, community models and pRSE (personalized
 reaction set enrichment), go to Box-c.
+
 IntegrationCatalogToModel.m: Box-a|
 integration of bacterial gene catalog into metabolic model to generate a microbiome reference genome
 scale metabolic model (GEM).
+
 MAGMAgeneration.m: Box-b|
 calculation of reactionScore, constraining the model based on diet, species specific GEMs or MAGMA generation
-PersonalizedMicrobiomeMetabolism.m: Box-c|
-generating personalized metabolic microbiome
+
+PersonalizedMicrobiomeMetabolism.m: Box-c| generating personalized metabolic microbiome
 # Download and installation
 Download this repository and set path in MATLAB (https://uk.mathworks.com/help/matlab/matlab_env/add-remove-or-reorder-folders-on-the-search-path.html) to the directory.
 run the tutorials with the provided examples.  
