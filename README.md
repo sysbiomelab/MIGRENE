@@ -13,12 +13,13 @@ reaction set enrichment), go to Box-c.
 IntegrationCatalogToModel.m: Box-a|
 integration of bacterial gene catalog into metabolic model to generate a microbiome reference genome
 scale metabolic model (GEM).
-
 MAGMAgeneration.m: Box-b|
 calculation of reactionScore, constraining the model based on diet, species specific GEMs or MAGMA generation
 PersonalizedMicrobiomeMetabolism.m: Box-c|
 generating personalized metabolic microbiome
- 
-Gholamreza Bidkhori, gholamreza.bidkhori@kcl.ac.uk,
+# Citation
+Gholamreza Bidkhori, Sunjae Lee, et al. in preparation, 2020
+# Contact
+gholamreza.bidkhori@kcl.ac.uk,
 gbidkhori@gmail.com,
-Aug 2020
+# Acknowledgments
