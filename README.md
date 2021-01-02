@@ -19,6 +19,6 @@ calculation of reactionScore, constraining the model based on diet, species spec
 PersonalizedMicrobiomeMetabolism.m: Box-c|
 generating personalized metabolic microbiome
  
-Gholamreza Bidkhori, email: gholamreza.bidkhori@kcl.ac.uk,
+Gholamreza Bidkhori, gholamreza.bidkhori@kcl.ac.uk,
 gbidkhori@gmail.com,
 Aug 2020
