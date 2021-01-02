@@ -17,7 +17,7 @@ calculation of reactionScore, constraining the model based on diet, species spec
 PersonalizedMicrobiomeMetabolism.m: Box-c|
 generating personalized metabolic microbiome
 # Download and installation
-Download this repository and set path in MATLAB to the directory (https://uk.mathworks.com/help/matlab/matlab_env/add-remove-or-reorder-folders-on-the-search-path.html)
+Download this repository and set path in MATLAB (https://uk.mathworks.com/help/matlab/matlab_env/add-remove-or-reorder-folders-on-the-search-path.html) to the directory.
 run the tutorials with the provided examples.  
 # Contact
 gholamreza.bidkhori@kcl.ac.uk,
