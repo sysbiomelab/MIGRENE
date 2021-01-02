@@ -5,7 +5,7 @@ Three tutorials shows the steps that MIGRENE Toolbox automatically generate and 
 (MSP Associated Genome scale MetAbolic) models and personalized metabolic microbiome data
 using Bacterial gene catalog, metagenome species (MSP) and metagenomic data integration.
 
-# The three tutorials are provided in the toolbox:
+# three tutorials are provided in the toolbox:
 note: if you have your GEMS and you need to create the personalized metabolic microbiome data
 i.e. reaction richness, Microbiome, reaction abundance, community models and pRSE (personalized
 reaction set enrichment), go to Box-c.
