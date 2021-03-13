@@ -76,11 +76,16 @@ p_value=0.05;
 %%
 %community modeling
 % define the number of top abundant bacteria for community modeling 
+%here we generate communities for top 10 bacteria 
 top=10;
+thre=[];
 for i=1:size(abundance,2)
-    t1=sort(abundance(:,i),1,'descend');
-    abundance(find(abundance(:,i) <thre(i,1)),i)=0;
+t1=sort(abundance(:,i),1,'descend');
+thre(i,1)=t1(top,1);
+abundance(find(abundance(:,i) < thre(i,1)),i)=0;
 end
+boxplot(thre)
+median(thre)
 
 %specify the metabolite ID and exchange reaction for biomass (optional)
 biomass.EXrxn='Ex_Biomass';
@@ -90,5 +95,6 @@ if ~exist([SAVEDIR filesep 'community'],'dir')
 mkdir([SAVEDIR filesep 'community']);
 end
 PathToSave=[SAVEDIR filesep 'community'];
-% in report, "one" next to sample name shows that community model has been generated for the individual  
+% in report, "one" next to sample name shows that community model has been
+% generated for the individuals in PathToSave directory
 [report]= MakeCommunity(modelList,PathToModels,abundance,sampleName,PathToSave,biomass);
