@@ -11,7 +11,7 @@ function [report]= MakeCommunity(modelList,PathToModels,abundance,sampleName,Pat
 %outputs:					
 %   report:					shows generated community models for samples 
 
-%#Author: Gholamreza Bidkori, KCL, UK, email: gbidkhori@gmail.com, gholamreza.bidkhori@kcl.ac.uk
+%#Author: Gholamreza Bidkori, KCL, UK, email: gbidkhori@gmail.com, gholamreza.bidhkori@kcl.ac.uk
 if nargin<6
     biomass={};
 end
@@ -46,13 +46,22 @@ mets_art(:,4) = strrep(mets_art(:,1), '[e]', '[fe]');
 reactions={};
 for h1=1:length(models)
     temp=models{h1};
-    reactions=vertcat(reactions,temp.rxns);
+    indexEx=strfind(temp.rxns,'Ex_');
+    IndexEx = find(not(cellfun('isempty',indexEx)));
+    rxn=temp.rxns(IndexEx,1);
+    rxn(:,2)=printRxnFormula(temp,rxn);
+    reactions=vertcat(reactions,rxn);
 end
-reactions=unique(reactions);
+[~,idx]=unique(strcat(reactions(:,1), 'rows'));
+reactions1=reactions(idx,:)
 
-indexEx=strfind(reactions,'Ex_');
-IndexEx = find(not(cellfun('isempty',indexEx)));
-Ex_art=reactions(IndexEx,1);
+Ex_art=[]
+for h1=1:size(mets_art,1)
+IndexC = strfind(reactions1(:,2),mets_art{h1,1});
+Index = find(not(cellfun('isempty',IndexC)));
+Ex_art{h1,1}=reactions1{Index,1}
+end
+
 Ex_art(:,2) = strrep(Ex_art(:,1), 'Ex_', 'FoEx_');
 Ex_art(:,3) = strrep(Ex_art(:,1), 'Ex_', 'Fo_');
 Ex_art(:,4) = strrep(Ex_art(:,1), 'Ex_', 'Fe_');
@@ -97,7 +106,7 @@ for h2 = 1:size(modelListN,1)
     model.rxns = strcat(modelList1{h2, 1}, model.rxns);
     Lumen=model.mets(find(cellfun('isempty',strfind(model.mets,'ee[lu]'))))
     if ~isempty(biomass)
-        Lumen=union(Lumen,strcat(biomass.mets,'[lu]'))
+        Lumen=union(Lumen,biomass.mets)
     else
         Lumen=union(Lumen,'cpd11416ee[lu]')
     end
@@ -112,16 +121,20 @@ end
 mergedModelS=mergeTwoModels(merged, fakemodel, 1, false)   
       
 % make a global biomass including the biomasses of the bacteria in the community  
-BiomassAll=mergedModelS.mets(find(~(cellfun('isempty',strfind(mergedModelS.mets,'cpd11416ee[lu]')))));
+if ~isempty(biomass)
+     BiomassAll=mergedModelS.mets(find(~(cellfun('isempty',strfind(mergedModelS.mets,biomass.mets)))));
+else
+     BiomassAll=mergedModelS.mets(find(~(cellfun('isempty',strfind(mergedModelS.mets,'cpd11416ee[lu]')))));
+end
 biomassmodel.mets=BiomassAll;
 biomassmodel.rxns={'BiomassAll'};
 biomassmodel.lb=0.1;
 biomassmodel.ub=1;
 biomassmodel.S=zeros(numel(biomassmodel.mets),numel(biomassmodel.rxns));
 if ~isempty(biomass)
-    biomassmodel.S(find(strcmp(biomassmodel.mets,strcat(biomass.mets,'[lu]'))))=1
+    biomassmodel.S(find(strcmp(biomassmodel.mets,biomass.mets)))=1;
 else
-    biomassmodel.S(find(strcmp(biomassmodel.mets,'cpd11416ee[lu]')))==1
+    biomassmodel.S(find(strcmp(biomassmodel.mets,'cpd11416ee[lu]')))==1;
 end
 % add bacterial abundance as Stoichiometric Coefficients into the global biomass
 for w12 =1:numel(biomassmodel.mets)
