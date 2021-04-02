@@ -22,7 +22,7 @@ PersonalizedMicrobiomeMetabolism.m: Box-c| generating personalized metabolic mic
 Download this repository and set path in MATLAB (https://uk.mathworks.com/help/matlab/matlab_env/add-remove-or-reorder-folders-on-the-search-path.html) to the directory.
 run the tutorials with the provided examples.  
 # Contact
-gholamreza.bidkhori@kcl.ac.uk,
+gholamreza.bidhori@kcl.ac.uk,
 gbidkhori@gmail.com,
 # Citation
 Gholamreza Bidkhori, Sunjae Lee, et al. in preparation, 2020
