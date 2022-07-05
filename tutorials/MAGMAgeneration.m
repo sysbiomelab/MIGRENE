@@ -67,20 +67,17 @@ MSPinfo.msp=T.Properties.VariableNames;
 MSPinfo.msp=transpose(MSPinfo.msp(1,2:end));
 MSPinfo.expression=table2array(T(1:end ,2:end));
 
- if ~exist([SAVEDIR filesep 'reactionProfile'], 'dir')
-      mkdir([SAVEDIR filesep 'reactionProfile'])
- end
 % second, generate reaction state (absent/present reaction) for bacteria
 % and prune the genes based on bacterial (MSP) profile for each species.
 for h=1:length(MSPinfo.msp)
-    if ~exist([SAVEDIR filesep 'reactionProfile' filesep MSPinfo.msp{h} '.mat']) 	
+    if ~exist([SAVEDIR filesep MSPinfo.msp{h} '.mat']) 	
             metagenomeData=struct();
             metagenomeData.gene=MSPinfo.genes;
             metagenomeData.value=MSPinfo.expression(:,h);
             [RxnState, modelforMSP] = MetagenomeToReactions(microbiomeGEM, metagenomeData);
             % save RxnState and modelforMSP in a mat file entitled the
             % corresponding bacterium (MSP)
-            save([SAVEDIR filesep 'reactionProfile' filesep MSPinfo.msp{h} '.mat'],'RxnState','modelforMSP');
+            save([SAVEDIR filesep MSPinfo.msp{h} '.mat'],'RxnState','modelforMSP');
     else
         disp(['the reaction state and modelforMSP for ' MSPinfo.msp{h} ' are already generated. see your directory'])
     end 
@@ -89,7 +86,7 @@ end
 % collect MSP (bacterial) Information
 % get path to where RxnState and modelforMSP for each bacterium (MSP) were
 % saved
-RXNDIR=[SAVEDIR filesep 'reactionProfile'];
+RXNDIR=SAVEDIR;
 % the following function generates MSPInformation, a structure includes the
 % following fields:
 % taxoLevel, the taxonomy names. taxoInfo, taxonomy information for each
@@ -138,9 +135,13 @@ for h=1:length(MSPInformation.bacteria)
     reactionScore(indexOfTrEx,:)=1;
     % add a field, named species, to the biblome for finding the
     % corresponding info in the structure including all the bacteria
-    bibliome.species=MSPInformation.bacteria{h};
-    [contextSpecificModel] = contextSpecificModelGenertion(modelforMSP,reactionScore,threshold,bibliome);
-    MSPInformation.species=MSPInformation.bacteria{h};
+    if exist('bibliome')
+        bibliome.species=MSPInformation.bacteria{h};
+        [contextSpecificModel] = contextSpecificModelGenertion(modelforMSP,reactionScore,threshold,bibliome);
+    else
+        [contextSpecificModel] = contextSpecificModelGenertion(modelforMSP,reactionScore,threshold);
+    end
+     MSPInformation.species=MSPInformation.bacteria{h};
     [contextSpecificModel, modelInfo] = contextSpecificModelTune(contextSpecificModel,MSPInformation,reactionScore,threshold,modelseed);
     %adds new variables to the corresponding MAT-file
     save([RXNDIR filesep MSPInformation.bacteria{h} '.mat'],'contextSpecificModel','modelInfo','-append');

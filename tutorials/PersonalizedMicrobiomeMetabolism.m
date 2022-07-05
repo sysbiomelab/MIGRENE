@@ -77,7 +77,7 @@ p_value=0.05;
 %community modeling
 % define the number of top abundant bacteria for community modeling 
 %here we generate communities for top 10 bacteria 
-top=10;
+top=5;
 thre=[];
 for i=1:size(abundance,2)
 t1=sort(abundance(:,i),1,'descend');
