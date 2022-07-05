@@ -37,7 +37,7 @@ end
 rxns=unique(rxnTemp);
 temporary=zeros(numel(rxns),numel(modelList));
 for w1=1:numel(modelList)
-    load([PathToModels.path filesep modelList{h1}],PathToModels.name)
+    load([PathToModels.path filesep modelList{w1}],PathToModels.name)
 	model=eval(PathToModels.name);
     temporary(find(ismember(rxns,model.rxns)),w1)=1;
 end

@@ -18,7 +18,7 @@ for h1 = 1:size(modelList,1)
 end
 modelList=modelList(index,:);
 abundance=abundance(index,:);
-c={}
+c={};
 for h1 = 1:size(modelList,1)
 	load([PathToModels.path filesep modelList{h1}],PathToModels.name)
 	model=eval(PathToModels.name);

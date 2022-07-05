@@ -28,10 +28,16 @@ if ~isempty(bibliome)
         elseif size(bibliome.value,2)>1 && isfield(bibliome, 'species')
             % find the corresponding bibliome data for the species
             index=find(strcmp(bibliome.bacteria, bibliome.species));
-            value=bibliome.value(:,index);
+            if ~isempty(index)
+                value=bibliome.value(:,index);
+            else 
+                bibliome={};
+            end
         elseif size(bibliome.value,2)==1
             value=bibliome.value;
         end
+
+        if ~isempty(bibliome)
          model1=model;
         % find the exchange reactions and constrain the model for consumption 
         consumed=bibliome.rxn(find(value==1));
@@ -55,6 +61,7 @@ if ~isempty(bibliome)
             model=model1;
         else
             disp('the bibliome info could not be added to the model. some changes made the model nonfunctional')
+        end
         end
     end
 end
