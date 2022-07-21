@@ -158,11 +158,13 @@ PmergedModel.c(:,1)=0;
 PmergedModel.c(find(strcmp(PmergedModel.rxns,'BiomassAll')))=1;
 PmergedModel1=PmergedModel;
 
-RXNs=PmergedModel1.rxns(find(~(cellfun('isempty',strfind(PmergedModel1.rxns,'msp')))));
-ExRXN=PmergedModel1.rxns(find(~(cellfun('isempty',strfind(PmergedModel1.rxns,'Biomass_Bacteria')))));
-RXNs=setdiff(RXNs,ExRXN);
-CommunityModelF1=coupleRxnList2Rxn(PmergedModel1,RXNs,ExRXN);
-CommunityModelF2=PmergedModel
+for jjj=1:numel(modelListN)   
+         RXNs=PmergedModel1.rxns(find(~(cellfun('isempty',strfind(PmergedModel1.rxns,modelListN{jjj})))));
+         ExRXN=PmergedModel1.rxns(find(~(cellfun('isempty',strfind(PmergedModel1.rxns,'Biomass_Bacteria')))));
+         ExRXN=intersect(ExRXN,RXNs);
+         PmergedModel1=coupleRxnList2Rxn(PmergedModel1,RXNs,ExRXN); 
+         jjj
+end
 save([PathToSave filesep sampleName{h1} '.mat'],'CommunityModelF1','CommunityModelF2')
 report{h1,1}=sampleName{h1}
 report{h1,2}=true
