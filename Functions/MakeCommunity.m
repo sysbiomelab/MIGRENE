@@ -165,7 +165,7 @@ for jjj=1:numel(modelListN)
          PmergedModel1=coupleRxnList2Rxn(PmergedModel1,RXNs,ExRXN); 
          jjj
 end
-save([PathToSave filesep sampleName{h1} '.mat'],'CommunityModelF1','CommunityModelF2')
+save([PathToSave filesep sampleName{h1} '.mat'],'PmergedModel1','PmergedModel')
 report{h1,1}=sampleName{h1}
 report{h1,2}=true
 end
