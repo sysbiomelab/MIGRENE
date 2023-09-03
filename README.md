@@ -25,6 +25,6 @@ run the tutorials with the provided examples.
 gholamreza.bidhkori@kcl.ac.uk,
 gbidkhori@gmail.com,
 # Citation
-Gholamreza Bidkhori, Sunjae Lee, et al. in preparation, 2020
+in preparation, 2023
 # Acknowledgments
 
