@@ -4,7 +4,9 @@ MIGRENE toolbox is an integrated pipeline for Microbial and personalized GEM (Ge
 
 # Download and installation
 Download this repository. You can clone the repository using:
-''git clone https://github.com/sysbiomelab/MIGRENE.git
+```
+git clone https://github.com/sysbiomelab/MIGRENE.git
+```
 Download this repository and set path in MATLAB (https://uk.mathworks.com/help/matlab/matlab_env/add-remove-or-reorder-folders-on-the-search-path.html) to the directory.
 run the tutorials with the provided examples.  
 Three tutorials shows the steps that MIGRENE Toolbox automatically generate and simulate MAGMA
