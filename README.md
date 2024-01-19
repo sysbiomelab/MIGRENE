@@ -14,7 +14,6 @@ Or you can download this repository as a <a href="https://codeload.github.com/sy
 addpath(genpath("MIGRENE"))
 ```
 Or you can use the <a href="https://uk.mathworks.com/help/matlab/matlab_env/add-remove-or-reorder-folders-on-the-search-path.html">link</a> to learn how to set path in MATLAB to the directory.
-run the tutorials with the provided examples.  
 
 # three tutorials are provided in the toolbox:
 Three tutorials shows the steps that MIGRENE Toolbox automatically generate and simulate MAGMA
