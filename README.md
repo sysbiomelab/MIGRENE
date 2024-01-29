@@ -15,39 +15,12 @@ addpath(genpath("MIGRENE"))
 ```
 Or you can use the <a href="https://uk.mathworks.com/help/matlab/matlab_env/add-remove-or-reorder-folders-on-the-search-path.html">link</a> to learn how to set path in MATLAB to the directory.
 # tutorials
+<a href="https://github.com/sysbiomelab/MIGRENE/wiki/generation-of-microbiome-GEM"> Generation of microbiome GEM using a generic metabolic model and a microbiome catalog</a>: This tutorial shows how to integrate a bacterial gene catalog 
+into the metabolic model to generate a microbiome reference genome-scale metabolic model (GEM).
 
-### Prerequisites
+<a href="https://github.com/sysbiomelab/MIGRENE/wiki/generation-of-microbiome-GEM"> Generation of Bacterial (species-specific) GEM </a>: This tutorial shows how to calculate the reaction score and threshold for bacteria, to constrain the model and to generate species-specific bacterial GEMs. 
 
-Ensure you have the MIGRENE Toolbox installed. The tutorial is assumed that the MIGRENE path has been set with `addpath(genpath("MIGRENE"))`. Make sure to set the paths to the microbiome catalog (`data`), reference metabolic model (`mat`), the directory to save the microbiome GEM (`mat`) and define the Number of thread workers (`numWorkers`).
-```matlab
-% Example paths (modify according to your setup)
-MIGDIR = fileparts(which('MIGRENE_pipeline'));
-CATDIR = [MIGDIR filesep 'data'];
-MATDIR = [MIGDIR filesep 'mat'];
-SAVEDIR = [MIGDIR filesep 'mat'];
-numWorkers = 4; % Number of cores for parallelization
-```
-
-# Microbiome GEM Generation Tutorial
-## Overview
-This tutorial guides you through the process of generating a microbiome Genome-Scale Metabolic Model (GEM) using a generic metabolic model and a microbiome catalog. The methodology integrates bacterial gene information from a catalog into a reference metabolic model, producing a generic microbiome GEM.
-
-### Input data
-Three tutorials shows the steps that MIGRENE Toolbox automatically generate and simulate MAGMA
-(MSP Associated Genome scale MetAbolic) models and personalized metabolic microbiome data
-using Bacterial gene catalog, metagenome species (MSP) and metagenomic data integration.
-note: if you have your GEMS and you need to create the personalized metabolic microbiome data
-i.e. reaction richness, Microbiome, reaction abundance, community models and pRSE (personalized
-reaction set enrichment), go to Box-c.
-
-IntegrationCatalogToModel.m: Box-a|
-integration of bacterial gene catalog into metabolic model to generate a microbiome reference genome
-scale metabolic model (GEM).
-
-MAGMAgeneration.m: Box-b|
-calculation of reactionScore, constraining the model based on diet, species specific GEMs or MAGMA generation
-
-PersonalizedMicrobiomeMetabolism.m: Box-c| generating personalized metabolic microbiome
+<a href="https://github.com/sysbiomelab/MIGRENE/wiki/generation-of-microbiome-GEM"> Generation of Personalized Microbiome Metabolism </a>: It shows how to calculate reaction richness, reactobiome, reaction abundance, community models and iRSE (individualized reaction set enrichment)
 
 # Contact
 gholamreza.bidhkori@kcl.ac.uk,
