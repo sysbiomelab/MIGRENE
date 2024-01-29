@@ -14,8 +14,25 @@ Or you can download this repository as a <a href="https://codeload.github.com/sy
 addpath(genpath("MIGRENE"))
 ```
 Or you can use the <a href="https://uk.mathworks.com/help/matlab/matlab_env/add-remove-or-reorder-folders-on-the-search-path.html">link</a> to learn how to set path in MATLAB to the directory.
+# tutorials
 
-# three tutorials are provided in the toolbox:
+### Prerequisites
+
+Ensure you have the MIGRENE Toolbox installed. The tutorial is assumed that the MIGRENE path has been set with `addpath(genpath("MIGRENE"))`. Make sure to set the paths to the microbiome catalog (`data`), reference metabolic model (`mat`), the directory to save the microbiome GEM (`mat`) and define the Number of thread workers (`numWorkers`).
+```matlab
+% Example paths (modify according to your setup)
+MIGDIR = fileparts(which('MIGRENE_pipeline'));
+CATDIR = [MIGDIR filesep 'data'];
+MATDIR = [MIGDIR filesep 'mat'];
+SAVEDIR = [MIGDIR filesep 'mat'];
+numWorkers = 4; % Number of cores for parallelization
+```
+
+# Microbiome GEM Generation Tutorial
+## Overview
+This tutorial guides you through the process of generating a microbiome Genome-Scale Metabolic Model (GEM) using a generic metabolic model and a microbiome catalog. The methodology integrates bacterial gene information from a catalog into a reference metabolic model, producing a generic microbiome GEM.
+
+### Input data
 Three tutorials shows the steps that MIGRENE Toolbox automatically generate and simulate MAGMA
 (MSP Associated Genome scale MetAbolic) models and personalized metabolic microbiome data
 using Bacterial gene catalog, metagenome species (MSP) and metagenomic data integration.
