@@ -22,6 +22,15 @@ into the metabolic model to generate a microbiome reference genome-scale metabol
 
 <a href="https://github.com/sysbiomelab/MIGRENE/wiki/generation-of-microbiome-GEM"> Generation of Personalized Microbiome Metabolism </a>: It shows how to calculate reaction richness, reactobiome, reaction abundance, community models and iRSE (individualized reaction set enrichment)
 
+## Integration
+
+## GEM generation
+
+## Reactobiome generation
+
+## Community Model Generation
+
+
 ## Contact
 gholamreza.bidhkori@kcl.ac.uk,
 gbidkhori@gmail.com,
