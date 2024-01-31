@@ -21,14 +21,21 @@ into the metabolic model to generate a microbiome reference genome-scale metabol
 <a href="https://github.com/sysbiomelab/MIGRENE/wiki/generation-of-microbiome-GEM"> Generation of Bacterial (species-specific) GEM </a>: This tutorial shows how to calculate the reaction score and threshold for bacteria, to constrain the model and to generate species-specific bacterial GEMs. 
 
 <a href="https://github.com/sysbiomelab/MIGRENE/wiki/generation-of-microbiome-GEM"> Generation of Personalized Microbiome Metabolism </a>: It shows how to calculate reaction richness, reactobiome, reaction abundance, community models and iRSE (individualized reaction set enrichment)
-## Data usage
+
 ## Integration of a gene catalog into a metabolic model.
-
+### Data usage
 * `<catalog>`: is a txt file containing gene names and KO (KEGG orthology) such as [SubSet_hs_10_4_igc2_annot.txt](data/SubSet_hs_10_4_igc2_annot.txt)
-* `<database_name>`: is the database name chosen by the user (the name to provide to `phylophlan` when running it)
-* `<input_extension>`: is the extension of the input file(s)
+* `<mapping file>`: (optional) a txt file contains the mapping information for KO to KEGG reaction ID.
+* `<Metabolic model>`: a mat file containig a metabolic models whether COBRA or RAVEN format such as [RefMetabolicModel.mat](mat/RefMetabolicModel.mat) 
 * `<database_type>`: has to be `n` if the user is using a nucleotide database or `a` if the user is using an amino acids database
+### functions
+* [checkCatalog](Functions/checkCatalog.m): check the `<catalog>` to make sure it is ready for integration.
+* [checkCatalog](Functions/convertCatalogAnnotation.m): Convert KO annotations to KEGG reaction IDs in the  `<catalog>`. If no mapping file `<mapping file>` is provided, the latest information is automatically downloaded from the KEGG API. the output is a `<converted catalog>`.
 
+microbiomeGEMgeneration
+* 
+*  
+### output
 ## GEM generation
 
 ## Reactobiome generation
