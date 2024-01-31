@@ -32,10 +32,12 @@ into the metabolic model to generate a microbiome reference genome-scale metabol
 * [convertCatalogAnnotation](Functions/convertCatalogAnnotation.m): Convert KO annotations to KEGG reaction IDs in the  `<catalog>`. If no mapping file `<mapping file>` is provided, the latest information is automatically downloaded from the KEGG API. the output is a `<converted catalog>`.
 * [microbiomeGEMgeneration](Functions/microbiomeGEMgeneration.m): integrate the `<converted catalog>` into the `<Metabolic_model>` to generate a microbiome `<reference_GEM>`
 
+
 ## Generation of Bacterial (species‐specific) GEM
 ### Data usage
 * `<reference_GEM>`: the genome scale metabolic Model with COBRA or RAVEN format such as the `<reference_GEM>` produced above by [microbiomeGEMgeneration](Functions/microbiomeGEMgeneration.m)
 * `<bacterial_info>`: an structure from a binary matrix containing gene-level data for bacterial species such as [MSPgeneProfile.txt](data/MSPgeneProfile.txt).
+  
   ```
   T = readtable('MSPgeneProfile.txt');
   bacterial_info = struct();
@@ -44,10 +46,14 @@ into the metabolic model to generate a microbiome reference genome-scale metabol
   bacterial_info.msp=transpose(MSPinfo.msp(1,2:end));
   bacterial_info.expression=table2array(T(1:end ,2:end));
   ```
+  
 * `<Bibliome_Data>`: (optional, example [here](mat/bibliome.mat)) any bibliome data about phenotypic features of the bacteria can be provided as a structure with four fields: "bacteria" is a cell array listing the names of the bacteria. "rxn" lists the name of the reactions having bibliome. "value" is a matrix of numbers: zero means no information, 1 means consumed, 2 means produced, -1 means not consumed and -2 means not produced by the corresponding bacteria. "aerobeInfo" a cell array provides the info that the bacteria require oxygen for growth or not, specifying with "aerobe", "anaerobe" or "facultative".
+  
 ### functions
 * [DietConstrain](Functions/DietConstrain.m): (optional) this function constrains `<reference_GEM>` based on the provided diet `<diet_number>` (1 to 5). Five diets have been provided by the toolbox: 1: high Fibre Plant Based, 2: high Fibre omnivore, 3: high Protein Plant based, 4: high protein omnivore, 5:UK average. Set the number of the diet for constraining the model.
-* [MetagenomeToReactions](Functions/MetagenomeToReactions.m): .
+
+  For each bacterium in the `<bacterial_info.msp>` 
+* [MetagenomeToReactions](Functions/MetagenomeToReactions.m): `<reference_GEM>` and  . `<bacterial_model>` a model with the bacterial genes and gene rules and `<Reaction_State>` a vector showing the state of the reaction (zero or one) for the bacterial species are the output files. 
 * [GenerateMSPInformation](Functions/GenerateMSPInformation.m): .
 * [MetaGenomicsReactionScore](Functions/MetaGenomicsReactionScore.m): .
 * [contextSpecificModelTune](Functions/contextSpecificModelTune.m): .
