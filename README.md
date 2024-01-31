@@ -21,8 +21,13 @@ into the metabolic model to generate a microbiome reference genome-scale metabol
 <a href="https://github.com/sysbiomelab/MIGRENE/wiki/generation-of-microbiome-GEM"> Generation of Bacterial (species-specific) GEM </a>: This tutorial shows how to calculate the reaction score and threshold for bacteria, to constrain the model and to generate species-specific bacterial GEMs. 
 
 <a href="https://github.com/sysbiomelab/MIGRENE/wiki/generation-of-microbiome-GEM"> Generation of Personalized Microbiome Metabolism </a>: It shows how to calculate reaction richness, reactobiome, reaction abundance, community models and iRSE (individualized reaction set enrichment)
+## Data usage
+## Integration of a gene catalog into a metabolic model.
 
-## Integration
+* `<catalog>`: is a txt file containing gene names and KO (KEGG orthology) such as [SubSet_hs_10_4_igc2_annot.txt](data/SubSet_hs_10_4_igc2_annot.txt)
+* `<database_name>`: is the database name chosen by the user (the name to provide to `phylophlan` when running it)
+* `<input_extension>`: is the extension of the input file(s)
+* `<database_type>`: has to be `n` if the user is using a nucleotide database or `a` if the user is using an amino acids database
 
 ## GEM generation
 
