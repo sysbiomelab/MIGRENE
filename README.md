@@ -36,8 +36,8 @@ into the metabolic model to generate a microbiome reference genome-scale metabol
 ## Generation of Bacterial (species‐specific) GEM
 ### Data usage
 * `<reference_GEM>`: the genome scale metabolic Model with COBRA or RAVEN format such as the `<reference_GEM>` produced above by [microbiomeGEMgeneration](Functions/microbiomeGEMgeneration.m)
-* `<bacterial_info>`: an structure from a binary matrix containing gene-level data for bacterial species such as [MSPgeneProfile.txt](data/MSPgeneProfile.txt).
-  
+* `<bacterial_info>`: an structure from a binary matrix containing gene-level data for bacterial species (exanmple [MSPgeneProfile.txt](data/MSPgeneProfile.txt)).
+    
   ```
   T = readtable('MSPgeneProfile.txt');
   bacterial_info = struct();
@@ -46,17 +46,27 @@ into the metabolic model to generate a microbiome reference genome-scale metabol
   bacterial_info.msp=transpose(MSPinfo.msp(1,2:end));
   bacterial_info.expression=table2array(T(1:end ,2:end));
   ```
-  
+* `<taxonomy>`: an Excel file contains taxonomy classification info i.e. Kingdom, Phylum, Class, Order, Family, Genus, Species (exanmple [MSPgeneProfile.txt](data/MSPgeneProfile.txt)). 
 * `<Bibliome_Data>`: (optional, example [here](mat/bibliome.mat)) any bibliome data about phenotypic features of the bacteria can be provided as a structure with four fields: "bacteria" is a cell array listing the names of the bacteria. "rxn" lists the name of the reactions having bibliome. "value" is a matrix of numbers: zero means no information, 1 means consumed, 2 means produced, -1 means not consumed and -2 means not produced by the corresponding bacteria. "aerobeInfo" a cell array provides the info that the bacteria require oxygen for growth or not, specifying with "aerobe", "anaerobe" or "facultative".
   
 ### functions
 * [DietConstrain](Functions/DietConstrain.m): (optional) this function constrains `<reference_GEM>` based on the provided diet `<diet_number>` (1 to 5). Five diets have been provided by the toolbox: 1: high Fibre Plant Based, 2: high Fibre omnivore, 3: high Protein Plant based, 4: high protein omnivore, 5:UK average. Set the number of the diet for constraining the model.
 
-  For each bacterium in the `<bacterial_info.msp>` 
-* [MetagenomeToReactions](Functions/MetagenomeToReactions.m): `<reference_GEM>` and  . `<bacterial_model>` a model with the bacterial genes and gene rules and `<Reaction_State>` a vector showing the state of the reaction (zero or one) for the bacterial species are the output files. 
-* [GenerateMSPInformation](Functions/GenerateMSPInformation.m): .
-* [MetaGenomicsReactionScore](Functions/MetaGenomicsReactionScore.m): .
-* [contextSpecificModelTune](Functions/contextSpecificModelTune.m): .
+* [MetagenomeToReactions](Functions/MetagenomeToReactions.m): This function needs `<reference_GEM>`and `<bacterial_info>` as inputs and must be seperately run for each bacterial species in the `<bacterial_info.msp>` using a loop, as below:
+```
+for h=1:length(MSPinfo.msp) 	
+            metagenomeData=struct();
+            metagenomeData.gene=bacterial_info.genes;
+            metagenomeData.value=bacterial_info.expression(:,h);
+            [Reaction_State, bacterial_model] = MetagenomeToReactions(microbiomeGEM, metagenomeData);
+            save(['save\to\directory\' bacterial_info.msp{h} '.mat'],'Reaction_State','bacterial_model');
+end
+```
+`<bacterial_model>` and `<Reaction_State>` for each species are the output that must be saved in the output directry in the same `mat` file entitled the bacterial name.
+`<bacterial_model>` is a model with the bacterial genes and gene rules and `<Reaction_State>` is a vector showing the state of the reaction (zero or one) for the bacterial species.
+* [GenerateMSPInformation](Functions/GenerateMSPInformation.m): this function generates  `<bacterial_Information>`, a structure that includes the following fields: taxoLevel, the taxonomy names. taxoInfo, taxonomy information for each species. taxoGroup: taxonomy group for bacteria. rxns, the reaction name in the reference model. bacteria, list of MSP IDs. BacteriaNames, list of species names. RxnStateAll, the reaction state (absent/present) for each bacteria. the input is the address to the directory including saved `Reaction_State>` and `bacterial_model>` for each bacterium (MSP), `<reference_GEM>` and address to `taxonomy>` file.
+* [MetaGenomicsReactionScore](Functions/MetaGenomicsReactionScore.m): This function utilize `<bacterial_Information>` to converts reaction states to reaction scores (`<reaction_Score>`) and calculate a threshold (`<threshold>`) for each bacterial species. `<reaction_Score>`, `<threshold>` must be added to the `mat` file including `<bacterial_model>` and `<Reaction_State>`
+* [contextSpecificModelTune](Functions/contextSpecificModelTune.m): `<bacterial_model>`,`<reaction_Score>`, `<threshold>` and `<Bibliome_Data>`to genrate context specefic species genome scale metabolic model (`<bacterial_GEM>`) as the output. [contextSpecificModelTune](Functions/contextSpecificModelTune.m) function tunes `<bacterial_GEM>` and also provides the level and the details of gap filling.  
 
 ## Reactobiome generation
 
