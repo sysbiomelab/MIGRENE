@@ -68,11 +68,6 @@ end
 * [MetaGenomicsReactionScore](Functions/MetaGenomicsReactionScore.m): This function utilize `<bacterial_Information>` to converts reaction states to reaction scores (`<reaction_Score>`) and calculate a threshold (`<threshold>`) for each bacterial species. `<reaction_Score>`, `<threshold>` must be added to the `mat` file including `<bacterial_model>` and `<Reaction_State>`
 * [contextSpecificModelTune](Functions/contextSpecificModelTune.m): `<bacterial_model>`,`<reaction_Score>`, `<threshold>` and `<Bibliome_Data>`to genrate context specefic species genome scale metabolic model (`<bacterial_GEM>`) as the output. [contextSpecificModelTune](Functions/contextSpecificModelTune.m) function tunes `<bacterial_GEM>` and also provides the level and the details of gap filling.  
 
-## Reactobiome generation
-
-## Community Model Generation
-
-
 ## Contact
 gholamreza.bidhkori@kcl.ac.uk,
 gbidkhori@gmail.com,
