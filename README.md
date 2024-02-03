@@ -66,7 +66,20 @@ end
 `<bacterial_model>` is a model with the bacterial genes and gene rules and `<Reaction_State>` is a vector showing the state of the reaction (zero or one) for the bacterial species.
 * [GenerateMSPInformation](Functions/GenerateMSPInformation.m): this function generates  `<bacterial_Information>`, a structure that includes the following fields: taxoLevel, the taxonomy names. taxoInfo, taxonomy information for each species. taxoGroup: taxonomy group for bacteria. rxns, the reaction name in the reference model. bacteria, list of MSP IDs. BacteriaNames, list of species names. RxnStateAll, the reaction state (absent/present) for each bacteria. the input is the address to the directory including saved `Reaction_State>` and `bacterial_model>` for each bacterium (MSP), `<reference_GEM>` and address to `taxonomy>` file.
 * [MetaGenomicsReactionScore](Functions/MetaGenomicsReactionScore.m): This function utilize `<bacterial_Information>` to converts reaction states to reaction scores (`<reaction_Score>`) and calculate a threshold (`<threshold>`) for each bacterial species. `<reaction_Score>`, `<threshold>` must be added to the `mat` file including `<bacterial_model>` and `<Reaction_State>`
-* [contextSpecificModelTune](Functions/contextSpecificModelTune.m): `<bacterial_model>`,`<reaction_Score>`, `<threshold>` and `<Bibliome_Data>`to genrate context specefic species genome scale metabolic model (`<bacterial_GEM>`) as the output. [contextSpecificModelTune](Functions/contextSpecificModelTune.m) function tunes `<bacterial_GEM>` and also provides the level and the details of gap filling.  
+* [contextSpecificModelTune](Functions/contextSpecificModelTune.m): `<bacterial_model>`,`<reaction_Score>`, `<threshold>` and `<Bibliome_Data>`to genrate context specefic species genome scale metabolic model (`<bacterial_GEM>`) as the output. [contextSpecificModelTune](Functions/contextSpecificModelTune.m) function tunes `<bacterial_GEM>` and also provides the level and the details of gap filling.
+
+## Reactobiome and reaction richness Generation
+
+### Data usage
+
+* `<modelList>`: an array to provide the names of bacterial GEM, such as row names of this [file]
+* `<sampleName>`: an array to provide the names of samples or subject, such as column names of this [file]
+* `<bacterial_abundance>`: the bacterial abundance matrix showing the abundance of bacteria in `<modelList>` in each subject in `<sampleName>`  note: for example go to [link1](https://github.com/sysbiomelab/LiverCirrhosis_MS) or [link2](https://github.com/sysbiomelab/MIGRENE/wiki/Generation-of-Personalized-Microbiome-Metabolism). 
+* `<PathToModels>`: Provides the path where the [bacterial GEMs](https://github.com/sysbiomelab/LiverCirrhosis_MS/blob/main/GEMmodels.zip) are saved in `PathToModels.path` field and the name of the model assigned in the .mat files in `PathToModels.name`. note: if you use the provided [bacterial GEMs](https://github.com/sysbiomelab/LiverCirrhosis_MS/blob/main/GEMmodels.zip), unzip it and then ```PathToModels.name='model'```.
+
+### Functuions
+* [RxnRichnessGenerator](Functions/RxnRichnessGenerator.m): uses `<modelList>`,`<PathToModels>`,`<abundance>` and `<sampleName>` and generates reaction richness for all the subjects regarding the provided GEMs.
+* [ReactobiomeGenerator](Functions/ReactobiomeGenerator.m): utelizes `<modelList>`,`<PathToModels>`,`<abundance>` and `<sampleName>` and generates reactobiome for all the subjects regarding the provided GEMs.
 
 ## Contact
 gholamreza.bidhkori@kcl.ac.uk,
