@@ -22,6 +22,9 @@ into the metabolic model to generate a microbiome reference genome-scale metabol
 
 <a href="https://github.com/sysbiomelab/MIGRENE/wiki/generation-of-microbiome-GEM"> Generation of Personalized Microbiome Metabolism </a>: It shows how to calculate reaction richness, reactobiome, reaction abundance, community models and iRSE (individualized reaction set enrichment)
 
+<a href="https://github.com/sysbiomelab/LiverCirrhosis_MS"> Reactobiome and reaction richness for Liver Cirrhosis gut microbiome samples </a>
+
+
 ## Integration of a gene catalog into a metabolic model.
 ### Data usage
 * `<catalog>`: is a txt file containing gene names and KO (KEGG orthology) such as [SubSet_hs_10_4_igc2_annot.txt](data/SubSet_hs_10_4_igc2_annot.txt)
